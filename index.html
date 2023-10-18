@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PTSC - Goong Map demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.slim.js"
+  integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+  crossorigin="anonymous"></script>
+
+  <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
+  <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
+  <!-- Load the `goong-geocoder` plugin. -->
+  <script src="https://cdn.jsdelivr.net/npm/@goongmaps/goong-geocoder@1.1.1/dist/goong-geocoder.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@goongmaps/goong-geocoder@1.1.1/dist/goong-geocoder.css" rel="stylesheet"
+    type="text/css" />
+
+  <!-- Promise polyfill script is required -->
+  <!-- to use Goong Geocoder in IE 11. -->
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body>
+  <div id="floating-panel">
+    <div class="m-3">
+      <div class="mt-3" id="review"></div>
+    </div>
+  </div>
+  <div id="map">
+    <div id="right" class="sidebar flex-center right collapsed">
+      <div class="sidebar-content rounded-rect flex-center">
+        Right Sidebar
+      </div>
+    </div>
+  </div>
+  <div id="menu">
+    <!-- See a list of Goong-hosted public styles at -->
+    <!-- https://docs.goong.io/style-spec/#available-styles -->
+    <input id="light" type="radio" name="rtoggle" value="https://tiles.goong.io/assets/goong_map_web.json"
+      checked="checked" />
+    <label for="light">Light</label>
+    <input id="dark" type="radio" name="rtoggle" value="https://tiles.goong.io/assets/goong_map_dark.json" />
+    <label for="dark">Dark</label>
+    <input id="nav_day" type="radio" name="rtoggle" value="https://tiles.goong.io/assets/navigation_day.json" />
+    <label for="nav_day">Navigation Day</label>
+    <input id="nav_night" type="radio" name="rtoggle" value="https://tiles.goong.io/assets/navigation_night.json" />
+    <label for="nav_night">Navigation Night</label>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

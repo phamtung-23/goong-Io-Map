@@ -23,6 +23,8 @@ function switchLayer(layer) {
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].onclick = switchLayer;
 }
+
+// draw oil lots
 const flightPlanCoordinates = [
   [105.820, 18.729],
   [107.026, 18.729],
@@ -92,11 +94,36 @@ const flightPlanCoordinates5 = [
   [104.507, 6.851],
   [103.010, 7.829]
 ];
+const line = [
+  [104.000, 30.000],
+  [104.000, 2.000],
+];
+const line1 = [
+  [106.000, 30.000],
+  [106.000, 2.000],
+];
+const line2 = [
+  [108.000, 30.000],
+  [108.000, 2.000],
+];
+const line3 = [
+  [110.000, 30.000],
+  [110.000, 2.000],
+];
+const line4 = [
+  [112.000, 30.000],
+  [112.000, 2.000],
+];
+const line5 = [
+  [114.000, 30.000],
+  [114.000, 2.000],
+];
 const pipeline = [
   [104.880, 8.856],
   [104.604, 8.849],
   [103.820, 7.191]
 ];
+
 let polylines = [
   flightPlanCoordinates,
   flightPlanCoordinates1,
@@ -106,8 +133,66 @@ let polylines = [
   goldenStar1,
   goldenStar2,
   flightPlanCoordinates5,
+  
+]
+
+let allLine = [
+  line,
+  line1,
+  line2,
+  line3,
+  line4,
+  line5,
 ]
 var hoveredStateId = null;
+
+
+map.on('load', function () {
+  // Add GeoJSON data
+  map.addSource('source', {
+    'type': 'geojson',
+    'data': {
+      'type': 'Feature',
+      'properties': {},
+      'geometry': {
+        'type': 'Polygon',
+        'coordinates': [
+          [
+            [105.820, 19.177],
+            [107.026, 19.177],
+            [107.020, 19.377],
+            [107.520, 19.677],
+            [106.020, 19.677],
+            [105.820, 19.477],
+            [105.820, 19.177],
+          ]
+        ]
+      }
+    }
+  });
+
+  // Load an image to use as the pattern
+  map.loadImage(
+    'https://res.cloudinary.com/dyndwt2bp/image/upload/v1698170466/upload/tesst_ozfgxu.png',
+    function (err, image) {
+      // Throw an error if something went wrong
+      if (err) throw err;
+
+      // Declare the image
+      map.addImage('pattern', image);
+
+      // Use it
+      map.addLayer({
+        'id': 'pattern-layer',
+        'type': 'fill',
+        'source': 'source',
+        'paint': {
+          'fill-pattern': 'pattern'
+        },
+      });
+    }
+  );
+});
 
 map.on('load', function () {
   for (let i = 0; i < polylines.length; i++) {
@@ -176,7 +261,48 @@ map.on('load', function () {
       map.removeLayer(`${source}-fills-hover`);
     });
   }
-
+  // for (let i = 0; i < allLine.length; i++) {
+  //   let sourceOil = `route${i}_oil`
+  //   map.addSource(sourceOil, {
+  //     'type': 'geojson',
+  //     'data': {
+  //       'type': 'Feature',
+  //       'properties': {},
+  //       'geometry': {
+  //         'type': 'LineString',
+  //         'coordinates': allLine[i]
+  //       }
+  //     }
+  //   });
+  //   map.addLayer({
+  //     'id': `${sourceOil}-fills-oil`,
+  //     'type': 'fill',
+  //     'source': sourceOil,
+  //     'layout': {},
+  //     'paint': {
+  //       'fill-color': '#999999',
+  //       'fill-opacity': [
+  //         'case',
+  //         ['boolean', ['feature-state', 'hover'], false],
+  //         1,
+  //         0
+  //       ]
+  //     }
+  //   });
+  //   map.addLayer({
+  //     'id': sourceOil,
+  //     'type': 'line',
+  //     'source': sourceOil,
+  //     'layout': {
+  //       'line-join': 'round',
+  //       'line-cap': 'round'
+  //     },
+  //     'paint': {
+  //       'line-color': '#417b96',
+  //       'line-width': 1
+  //     }
+  //   });
+  // }
   map.addSource('pipeline', {
     'type': 'geojson',
     'data': {
@@ -202,7 +328,6 @@ map.on('load', function () {
     }
   });
 
-  
 });
 
 function toggleSideOff(id) {

@@ -1,4 +1,8 @@
-goongjs.accessToken = '9mCaMwiQrQ47CpRYryXe8pUsY0RYnlQKf9UlVE5J';
+//get keys in https://account.goong.io/keys
+var maptiles_key = '9mCaMwiQrQ47CpRYryXe8pUsY0RYnlQKf9UlVE5J';
+var api_key = 'c2LzYcVXwV1jDs3R3wPPLB0W5QAm9tZBunLJyNSD';
+
+goongjs.accessToken = maptiles_key;
 var map = new goongjs.Map({
   container: 'map',
   style: 'https://tiles.goong.io/assets/goong_light_v2.json', // stylesheet location
@@ -9,7 +13,7 @@ var map = new goongjs.Map({
 // Add the control to the map.
 map.addControl(
   new GoongGeocoder({
-    accessToken: 'c2LzYcVXwV1jDs3R3wPPLB0W5QAm9tZBunLJyNSD',
+    accessToken: api_key,
     goongjs: goongjs
   })
 );
